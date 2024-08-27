@@ -31,7 +31,8 @@ def page_news_research_tool():
         main_placeholder.text("Data Loading and Splitting...Started...✅✅✅")
         docs = data_load_split(urls)
         main_placeholder.text("Embedding Vector Started Building...✅✅✅")
-        create_save_embedding(docs)
+        size = create_save_embedding(docs)
+        st.write("Embedding Size",size)
         main_placeholder.text("Vectors Stored Successfully...✅✅✅")
         query = main_placeholder.text_input("Question: ")
         if query:

@@ -27,12 +27,16 @@ def data_load_split(urls):
 def create_save_embedding(docs):
     # create embeddings and save it to FAISS index
     embeddings = OpenAIEmbeddings(openai_api_key = get_secret())
-    vectorstore_openai = FAISS.from_documents(docs, embeddings)
-    time.sleep(2)
-    # Save the FAISS index to a pickle file
-    with open(file_path, "wb") as f:
-        print("opened file")
-        pickle.dump(vectorstore_openai, f)
+    #vectorstore_openai = FAISS.from_documents(docs, embeddings)
+    first_doc = docs[0].page_content
+    embedding_size = len(embeddings.embed_documents([first_doc])[0])
+    return embedding_size
+    #st.write("Embedding size:", embedding_size)
+    # time.sleep(2)
+    # # Save the FAISS index to a pickle file
+    # with open(file_path, "wb") as f:
+    #     print("opened file")
+    #     pickle.dump(vectorstore_openai, f)
 
 
 def info_loader(file_path, query):

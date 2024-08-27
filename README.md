@@ -6,7 +6,10 @@
 ## Architecture of Text Summarization System
 <img src="/assets/news_summary.png">
 
-## New Summarization UI
+## News LLM App
+<img src="/assets/front_page.PNG">
+
+## News Summarization UI
 <img src="/assets/news_summary_ui.PNG">
 
 ## Steps Involved for AWS Setup
