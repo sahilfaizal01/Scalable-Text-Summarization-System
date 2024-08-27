@@ -7,16 +7,40 @@ from langchain import OpenAI
 import json
 import getpass
 import base64
+import boto3
+from botocore.exceptions import ClientError
 
-print("Enter the OpenAI API Key:")
-api_key = getpass.getpass()
-print("OpenAI Key Initialized")
+
+def get_secret():
+
+    secret_name = "llmapp-key"
+    region_name = "us-east-1"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        # For a list of exceptions thrown, see
+        # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+        raise e
+
+    secret = get_secret_value_response['SecretString']
+    secret = json.loads(secret)
+    return str(secret["OPENAI_API_KEY"])
 
 def prediction_pipeline(text):
     text_splitter = CharacterTextSplitter(separator='\n',chunk_size=1000,chunk_overlap=20)
     text_chunks = text_splitter.split_text(text) # to split the text into chunks
-    print(len(text_chunks)) # to estimate token requirement
-    llm = OpenAI(openai_api_key = api_key) # initiate LLM model
+    #print(len(text_chunks)) # to estimate token requirement
+    llm = OpenAI(openai_api_key = get_secret()) # initiate LLM model
     docs = [Document(page_content = t) for t in text_chunks] # creating document objects
     chain = load_summarize_chain(llm = llm, chain_type='map_reduce',verbose=True)
     summary = chain.run(docs)
@@ -35,11 +59,3 @@ In 2019–20, the economy of Kerala was the 8th-largest in India with ₹8.55 tr
 """
 
 print(prediction_pipeline(text1))
-
-# extractive summary - extracts and uses same words from original text
-# metric - log score to compare or bleu score
-# abstractive summary - more readable and concise - uses similar words to original text
-# using two models we can compute the score
-# key bert to extract keywords from generated text and from ground truth
-# named entity recognition on the extracted keywords from two sets
-# they write logic to compute a score based on level of match
