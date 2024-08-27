@@ -12,4 +12,7 @@
 6) Create ECR container and upload docker container
 7) Create IAM Policy for API Key extraction
 8) Create ECS Cluster with FarGate then create task definition to load API_KEY from Secrets Manager and run the Docker Container
-9) Run the task on the cluster, expose security group to public APIS
+9) Run the task on the cluster, expose security group to public API'S
+10) Now add load balancer, when creating task definition add health monitoring and auto scaling for horizontal scaling function
+11) Expose the API for load balancer for public usecases
+
