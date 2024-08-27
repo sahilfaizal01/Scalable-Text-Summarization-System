@@ -4,7 +4,7 @@
 <img src="/assets/news_summary.png">
 
 ## New Summarization UI
-<img src="/assets/news_summary_ui.png">
+<img src="/assets/news_summary_ui.PNG">
 
 ## Steps Involved for AWS Setup
 1) Create IAM User using AWS Console with permission to access AWS Secrets Manager also
