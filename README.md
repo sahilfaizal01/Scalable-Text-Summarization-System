@@ -1,5 +1,8 @@
 # Scalable-Text-Summarization-System
 
+## Architecture of News Research Tool
+<img src="/assets/News_Research_Tool.drawio.png">
+
 ## Architecture of Text Summarization System
 <img src="/assets/news_summary.png">
 
