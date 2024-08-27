@@ -3,6 +3,9 @@
 ## Architecture of Text Summarization System
 <img src="/assets/news_summary.png">
 
+## New Summarization UI
+<img src="/assets/news_summary_ui.png">
+
 ## Steps Involved for AWS Setup
 1) Create IAM User using AWS Console with permission to access AWS Secrets Manager also
 2) Install and configure AWS CLI on local system
