@@ -30,13 +30,11 @@ def create_save_embedding(docs):
     #vectorstore_openai = FAISS.from_documents(docs, embeddings)
     first_doc = docs[0].page_content
     embedding_size = len(embeddings.embed_documents([first_doc])[0])
-    return embedding_size
-    #st.write("Embedding size:", embedding_size)
-    # time.sleep(2)
-    # # Save the FAISS index to a pickle file
-    # with open(file_path, "wb") as f:
-    #     print("opened file")
-    #     pickle.dump(vectorstore_openai, f)
+    time.sleep(2)
+    # Save the FAISS index to a pickle file
+    with open(file_path, "wb") as f:
+        print("opened file")
+        pickle.dump(vectorstore_openai, f)
 
 
 def info_loader(file_path, query):
