@@ -34,16 +34,16 @@ def page_news_research_tool():
         size = create_save_embedding(docs)
         st.write("Embedding Size",size)
         main_placeholder.text("Vectors Stored Successfully...✅✅✅")
-        query = main_placeholder.text_input("Question: ")
-        if query:
-            result, sources = info_loader(file_path,query)
-            st.header("Answer")
-            st.write(result["answer"])
-            if sources:
-                st.subheader("Sources:")
-                sources_list = sources.split("\n")
-                for source in sources_list:
-                    st.write(source)
+    query = main_placeholder.text_input("Question: ")
+    if query:
+        result, sources = info_loader(file_path,query)
+        st.header("Answer")
+        st.write(result["answer"])
+        if sources:
+            st.subheader("Sources:")
+            sources_list = sources.split("\n")
+            for source in sources_list:
+                st.write(source)
 
 
 
